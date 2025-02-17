@@ -2,10 +2,12 @@
 #include <iostream>
 
 void mainMenu::Initialize(sf::Vector2f windowSize) {
-    backgroundSize = windowSize;
+    backgroundSize = windowSize; // size of the background GIF
+
     animationTime = 0.0f;
     currentFrame = 0;
-    for (int i = 1; i <= NUM_FRAMES; ++i) {
+
+    for (int i = 1; i <= NUM_FRAMES; ++i) { // importing all the images in the GIF
         sf::Texture texture;
         if (texture.loadFromFile("assets/mainMenu/background_GIF/" + std::to_string(i) + ".gif")) {
             backgroundTextures.push_back(texture);
@@ -15,7 +17,7 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
         }
     }
 
-    if (!backgroundTextures.empty()) {
+    if (!backgroundTextures.empty()) { // setting the first frame as the background
         backgroundSprite.setTexture(backgroundTextures[0]);
         backgroundSprite.setPosition(sf::Vector2f(0, 0));
         backgroundSprite.setTextureRect(sf::IntRect(0, 0, backgroundSize.x, backgroundSize.y));
@@ -25,6 +27,7 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
         std::cout << "main menu background failed to load!" << std::endl;
     }
 
+    // transparent box behind the buttons
     transparentBoxSizeX = 3 * backgroundSize.x / 8;
     transparentBoxSizeY = backgroundSize.y;
     transparentBox.setSize(sf::Vector2f(transparentBoxSizeX, transparentBoxSizeY));
@@ -33,8 +36,8 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
 }
 
 void mainMenu::Update(sf::RenderWindow& window, float deltaTime) {
-    animationTime += deltaTime;
-    if (animationTime >= FRAME_DURATION) {
+    animationTime += deltaTime; // add the time since last frame change
+    if (animationTime >= FRAME_DURATION) { // change the background if more than FRAME_DURATION has passed
         animationTime = 0.0f;
         currentFrame = (currentFrame + 1) % backgroundTextures.size();
         backgroundSprite.setTexture(backgroundTextures[currentFrame]);
