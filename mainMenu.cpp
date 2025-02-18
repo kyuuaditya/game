@@ -27,6 +27,13 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
         std::cout << "main menu background failed to load!" << std::endl;
     }
 
+    if (font.loadFromFile("assets/fonts/HomeVideo-BLG6G.ttf")) {
+        std::cout << "font loaded" << std::endl;
+    }
+    else {
+        std::cout << "font not loaded" << std::endl;
+    }
+
     // transparent box behind the buttons
     transparentBoxSizeX = 3 * backgroundSize.x / 8;
     transparentBoxSizeY = backgroundSize.y;
@@ -41,26 +48,50 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
     playButton.setOutlineThickness(2.0f);
     playButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12 - 1 * (transparentBox.getSize().y / 8)));
 
-    // play button
+    playButtonText.setFont(font);
+    playButtonText.setCharacterSize(36);
+    playButtonText.setFillColor(sf::Color::White);
+    playButtonText.setString(playButtonTextString);
+    playButtonText.setPosition(playButton.getPosition().x + playButton.getSize().x / 2 - playButtonText.getLocalBounds().width / 2, playButton.getPosition().y + playButton.getSize().y / 2 - playButtonText.getLocalBounds().height);
+
+    // settings button
     settingsButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
     settingsButton.setFillColor(sf::Color(0, 0, 0, 100));
     settingsButton.setOutlineColor(sf::Color::White);
     settingsButton.setOutlineThickness(2.0f);
     settingsButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12));
 
-    // play button
+    settingsButtonText.setFont(font);
+    settingsButtonText.setCharacterSize(36);
+    settingsButtonText.setFillColor(sf::Color::White);
+    settingsButtonText.setString(settingsButtonTextString);
+    settingsButtonText.setPosition(settingsButton.getPosition().x + settingsButton.getSize().x / 2 - settingsButtonText.getLocalBounds().width / 2, settingsButton.getPosition().y + settingsButton.getSize().y / 2 - settingsButtonText.getLocalBounds().height);
+
+    // credits button
     creditsButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
     creditsButton.setFillColor(sf::Color(0, 0, 0, 100));
     creditsButton.setOutlineColor(sf::Color::White);
     creditsButton.setOutlineThickness(2.0f);
     creditsButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12 + 1 * (transparentBox.getSize().y / 8)));
 
-    // play button
+    creditsButtonText.setFont(font);
+    creditsButtonText.setCharacterSize(36);
+    creditsButtonText.setFillColor(sf::Color::White);
+    creditsButtonText.setString(creditsButtonTextString);
+    creditsButtonText.setPosition(creditsButton.getPosition().x + creditsButton.getSize().x / 2 - creditsButtonText.getLocalBounds().width / 2, creditsButton.getPosition().y + creditsButton.getSize().y / 2 - creditsButtonText.getLocalBounds().height);
+
+    // exit button
     exitButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
     exitButton.setFillColor(sf::Color(0, 0, 0, 100));
     exitButton.setOutlineColor(sf::Color::White);
     exitButton.setOutlineThickness(2.0f);
     exitButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12 + 2 * (transparentBox.getSize().y / 8)));
+
+    exitButtonText.setFont(font);
+    exitButtonText.setCharacterSize(36);
+    exitButtonText.setFillColor(sf::Color::White);
+    exitButtonText.setString(exitButtonTextString);
+    exitButtonText.setPosition(exitButton.getPosition().x + exitButton.getSize().x / 2 - exitButtonText.getLocalBounds().width / 2, exitButton.getPosition().y + exitButton.getSize().y / 2 - exitButtonText.getLocalBounds().height);
 }
 
 void mainMenu::Update(sf::RenderWindow& window, float deltaTime) {
@@ -74,9 +105,16 @@ void mainMenu::Update(sf::RenderWindow& window, float deltaTime) {
 
 void mainMenu::Render(sf::RenderWindow& window) {
     window.draw(backgroundSprite);
+
     window.draw(transparentBox);
+
     window.draw(playButton);
     window.draw(settingsButton);
     window.draw(creditsButton);
     window.draw(exitButton);
+
+    window.draw(playButtonText);
+    window.draw(settingsButtonText);
+    window.draw(creditsButtonText);
+    window.draw(exitButtonText);
 }

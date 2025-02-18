@@ -22,6 +22,17 @@ private:
     sf::RectangleShape creditsButton; // credits button
     sf::RectangleShape exitButton; // exit button
 
+    sf::Font font;
+
+    sf::Text playButtonText;
+    std::string playButtonTextString = "Play";
+    sf::Text settingsButtonText;
+    std::string settingsButtonTextString = "Settings";
+    sf::Text creditsButtonText;
+    std::string creditsButtonTextString = "Credits";
+    sf::Text exitButtonText;
+    std::string exitButtonTextString = "Exit";
+
 public:
     void Initialize(sf::Vector2f windowSize);
     void Update(sf::RenderWindow& window, float deltaTime);
