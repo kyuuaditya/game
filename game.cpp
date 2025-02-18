@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sfml/Graphics.hpp>
 #include "mainMenu.h"
+#include "checks.h"
 
 int main() {
     // Create the window
@@ -12,6 +13,7 @@ int main() {
 
     // define class object
     mainMenu mainMenu;
+    checks checks;
 
     // load
     mainMenu.Load(sf::Vector2f(window.getSize().x, window.getSize().y));
@@ -20,7 +22,9 @@ int main() {
     mainMenu.Initialize();
 
     sf::Clock clock; // main clock
+    sf::Vector2f mousePosition;
     while (window.isOpen()) {
+        mousePosition = sf::Vector2f(sf::Mouse::getPosition(window)); // get the mouse position
         // event handling
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -29,10 +33,29 @@ int main() {
                     window.close();
                 }
             }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    if (checks.isMouseOverButton(mainMenu.playButton, mousePosition)) {
+                        mainMenu.isOnMenu = false;
+                        mainMenu.isInGame = true;
+                    }
+                    if (checks.isMouseOverButton(mainMenu.settingsButton, mousePosition)) {
+                        mainMenu.isOnMenu = false;
+                        mainMenu.isOnSettings = true;
+                    }
+                    if (checks.isMouseOverButton(mainMenu.creditsButton, mousePosition)) {
+                        mainMenu.isOnMenu = false;
+                        mainMenu.isOnCredits = true;
+                    }
+                    if (checks.isMouseOverButton(mainMenu.exitButton, mousePosition)) {
+                        window.close();
+                    }
+                }
+            }
         }
 
         float deltaTime = clock.restart().asMilliseconds(); // restart the clock and get the time since last frame
-        mainMenu.Update(window, deltaTime);
+        mainMenu.Update(window, mousePosition, deltaTime);
 
         window.clear();
         mainMenu.Render(window);

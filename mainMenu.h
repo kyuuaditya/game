@@ -17,11 +17,6 @@ private:
     static const int NUM_FRAMES = 70; // number of frames in the GIF
     static constexpr float FRAME_DURATION = 100; // Duration of each frame in seconds
 
-    sf::RectangleShape playButton; // play button
-    sf::RectangleShape settingsButton; // settings button
-    sf::RectangleShape creditsButton; // credits button
-    sf::RectangleShape exitButton; // exit button
-
     sf::Font font;
 
     sf::Text playButtonText;
@@ -33,9 +28,25 @@ private:
     sf::Text exitButtonText;
     std::string exitButtonTextString = "Exit";
 
+    int boxForMenusSizeX;
+    int boxForMenusSizeY;
+
+    sf::RectangleShape boxForMenus; // transparent box behind the buttons
+
+public:
+    bool isOnMenu = true; // is the game on the main menu
+    bool isInGame = false; // is the game in progress
+    bool isOnCredits = false; // is the game in the credits
+    bool isOnSettings = false; // is the game in the settings
+
+    sf::RectangleShape playButton; // play button
+    sf::RectangleShape settingsButton; // settings button
+    sf::RectangleShape creditsButton; // credits button
+    sf::RectangleShape exitButton; // exit button
+
 public:
     void Load(sf::Vector2f windowSize);
     void Initialize();
-    void Update(sf::RenderWindow& window, float deltaTime);
+    void Update(sf::RenderWindow& window, sf::Vector2f mousePosition, float deltaTime);
     void Render(sf::RenderWindow& window);
 };

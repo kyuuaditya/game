@@ -94,29 +94,50 @@ void mainMenu::Initialize() {
     exitButtonText.setFillColor(sf::Color::White);
     exitButtonText.setString(exitButtonTextString);
     exitButtonText.setPosition(exitButton.getPosition().x + exitButton.getSize().x / 2 - exitButtonText.getLocalBounds().width / 2, exitButton.getPosition().y + exitButton.getSize().y / 2 - exitButtonText.getLocalBounds().height);
+
+    // big box outside credits
+    boxForMenusSizeY = 7 * backgroundSize.y / 8;
+    boxForMenusSizeX = backgroundSize.x - backgroundSize.y / 8;
+    boxForMenus.setSize(sf::Vector2f(boxForMenusSizeX, boxForMenusSizeY));
+    boxForMenus.setFillColor(sf::Color(0, 0, 0, 127));
+    boxForMenus.setPosition(sf::Vector2f(backgroundSize.y / 16, backgroundSize.y / 16));
 }
 
-void mainMenu::Update(sf::RenderWindow& window, float deltaTime) {
-    animationTime += deltaTime; // add the time since last frame change
-    if (animationTime >= FRAME_DURATION) { // change the background if more than FRAME_DURATION has passed
-        animationTime = 0.0f;
-        currentFrame = (currentFrame + 1) % backgroundTextures.size();
-        backgroundSprite.setTexture(backgroundTextures[currentFrame]);
+void mainMenu::Update(sf::RenderWindow& window, sf::Vector2f mousePosition, float deltaTime) {
+    if (isOnMenu || isOnSettings || isOnCredits) {
+        animationTime += deltaTime; // add the time since last frame change
+        if (animationTime >= FRAME_DURATION) { // change the background if more than FRAME_DURATION has passed
+            animationTime = 0.0f;
+            currentFrame = (currentFrame + 1) % backgroundTextures.size();
+            backgroundSprite.setTexture(backgroundTextures[currentFrame]);
+        }
     }
 }
 
 void mainMenu::Render(sf::RenderWindow& window) {
-    window.draw(backgroundSprite);
+    if (isOnMenu || isOnSettings || isOnCredits) {
+        window.draw(backgroundSprite); // background GIF
+    }
 
-    window.draw(transparentBox);
+    if (isOnMenu) {
+        window.draw(transparentBox); // transparent box behind the buttons
 
-    window.draw(playButton);
-    window.draw(settingsButton);
-    window.draw(creditsButton);
-    window.draw(exitButton);
+        window.draw(playButton);
+        window.draw(settingsButton);
+        window.draw(creditsButton);
+        window.draw(exitButton);
 
-    window.draw(playButtonText);
-    window.draw(settingsButtonText);
-    window.draw(creditsButtonText);
-    window.draw(exitButtonText);
+        window.draw(playButtonText);
+        window.draw(settingsButtonText);
+        window.draw(creditsButtonText);
+        window.draw(exitButtonText);
+    }
+
+    if (isOnCredits) {
+        window.draw(boxForMenus);
+    }
+
+    if (isOnSettings) {
+        window.draw(boxForMenus);
+    }
 }
