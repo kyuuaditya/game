@@ -33,6 +33,34 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
     transparentBox.setSize(sf::Vector2f(transparentBoxSizeX, transparentBoxSizeY));
     transparentBox.setFillColor(sf::Color(0, 0, 0, 127));
     transparentBox.setPosition(sf::Vector2f(3 * backgroundSize.x / 8, 0));
+
+    // play button
+    playButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
+    playButton.setFillColor(sf::Color(0, 0, 0, 100));
+    playButton.setOutlineColor(sf::Color::White);
+    playButton.setOutlineThickness(2.0f);
+    playButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12 - 1 * (transparentBox.getSize().y / 8)));
+
+    // play button
+    settingsButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
+    settingsButton.setFillColor(sf::Color(0, 0, 0, 100));
+    settingsButton.setOutlineColor(sf::Color::White);
+    settingsButton.setOutlineThickness(2.0f);
+    settingsButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12));
+
+    // play button
+    creditsButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
+    creditsButton.setFillColor(sf::Color(0, 0, 0, 100));
+    creditsButton.setOutlineColor(sf::Color::White);
+    creditsButton.setOutlineThickness(2.0f);
+    creditsButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12 + 1 * (transparentBox.getSize().y / 8)));
+
+    // play button
+    exitButton.setSize(sf::Vector2f(transparentBoxSizeX / 3, transparentBoxSizeY / 12));
+    exitButton.setFillColor(sf::Color(0, 0, 0, 100));
+    exitButton.setOutlineColor(sf::Color::White);
+    exitButton.setOutlineThickness(2.0f);
+    exitButton.setPosition(sf::Vector2f(transparentBox.getPosition().x + transparentBox.getSize().x / 3, 5 * transparentBox.getSize().y / 12 + 2 * (transparentBox.getSize().y / 8)));
 }
 
 void mainMenu::Update(sf::RenderWindow& window, float deltaTime) {
@@ -47,4 +75,8 @@ void mainMenu::Update(sf::RenderWindow& window, float deltaTime) {
 void mainMenu::Render(sf::RenderWindow& window) {
     window.draw(backgroundSprite);
     window.draw(transparentBox);
+    window.draw(playButton);
+    window.draw(settingsButton);
+    window.draw(creditsButton);
+    window.draw(exitButton);
 }

@@ -17,6 +17,11 @@ private:
     static const int NUM_FRAMES = 70; // number of frames in the GIF
     static constexpr float FRAME_DURATION = 100; // Duration of each frame in seconds
 
+    sf::RectangleShape playButton; // play button
+    sf::RectangleShape settingsButton; // settings button
+    sf::RectangleShape creditsButton; // credits button
+    sf::RectangleShape exitButton; // exit button
+
 public:
     void Initialize(sf::Vector2f windowSize);
     void Update(sf::RenderWindow& window, float deltaTime);
