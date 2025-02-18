@@ -34,7 +34,8 @@ private:
     std::string exitButtonTextString = "Exit";
 
 public:
-    void Initialize(sf::Vector2f windowSize);
+    void Load(sf::Vector2f windowSize);
+    void Initialize();
     void Update(sf::RenderWindow& window, float deltaTime);
     void Render(sf::RenderWindow& window);
 };

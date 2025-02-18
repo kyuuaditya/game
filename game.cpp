@@ -13,8 +13,11 @@ int main() {
     // define class object
     mainMenu mainMenu;
 
+    // load
+    mainMenu.Load(sf::Vector2f(window.getSize().x, window.getSize().y));
+
     // initialize 
-    mainMenu.Initialize(sf::Vector2f(window.getSize().x, window.getSize().y));
+    mainMenu.Initialize();
 
     sf::Clock clock; // main clock
     while (window.isOpen()) {

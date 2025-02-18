@@ -1,11 +1,8 @@
 #include "mainMenu.h"
 #include <iostream>
 
-void mainMenu::Initialize(sf::Vector2f windowSize) {
+void mainMenu::Load(sf::Vector2f windowSize) {
     backgroundSize = windowSize; // size of the background GIF
-
-    animationTime = 0.0f;
-    currentFrame = 0;
 
     for (int i = 1; i <= NUM_FRAMES; ++i) { // importing all the images in the GIF
         sf::Texture texture;
@@ -27,12 +24,17 @@ void mainMenu::Initialize(sf::Vector2f windowSize) {
         std::cout << "main menu background failed to load!" << std::endl;
     }
 
-    if (font.loadFromFile("assets/fonts/HomeVideo-BLG6G.ttf")) {
+    if (font.loadFromFile("assets/fonts/HomeVideo-BLG6G.ttf")) { // loading font
         std::cout << "font loaded" << std::endl;
     }
     else {
         std::cout << "font not loaded" << std::endl;
     }
+}
+
+void mainMenu::Initialize() {
+    animationTime = 0.0f;
+    currentFrame = 0;
 
     // transparent box behind the buttons
     transparentBoxSizeX = 3 * backgroundSize.x / 8;
