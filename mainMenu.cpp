@@ -1,8 +1,7 @@
 #include "mainMenu.h"
 #include <iostream>
 
-void mainMenu::Load(sf::Vector2f windowSize) {
-    backgroundSize = windowSize; // size of the background GIF
+void mainMenu::Load() {
 
     for (int i = 1; i <= NUM_FRAMES; ++i) { // importing all the images in the GIF
         sf::Texture texture;
@@ -17,7 +16,6 @@ void mainMenu::Load(sf::Vector2f windowSize) {
     if (!backgroundTextures.empty()) { // setting the first frame as the background
         backgroundSprite.setTexture(backgroundTextures[0]);
         backgroundSprite.setPosition(sf::Vector2f(0, 0));
-        backgroundSprite.setTextureRect(sf::IntRect(0, 0, backgroundSize.x, backgroundSize.y));
         std::cout << "main menu background loaded!" << std::endl;
     }
     else {
@@ -32,7 +30,9 @@ void mainMenu::Load(sf::Vector2f windowSize) {
     }
 }
 
-void mainMenu::Initialize() {
+void mainMenu::Initialize(sf::Vector2f windowSize) {
+    backgroundSize = windowSize; // size of the background GIF
+    backgroundSprite.setTextureRect(sf::IntRect(0, 0, backgroundSize.x, backgroundSize.y));
     animationTime = 0.0f;
     currentFrame = 0;
 

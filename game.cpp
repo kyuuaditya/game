@@ -18,11 +18,12 @@ int main() {
     player player;
 
     // load
-    mainMenu.Load(sf::Vector2f(window.getSize().x, window.getSize().y));
-    player.Load(sf::Vector2f(window.getSize().x, window.getSize().y));
+    mainMenu.Load();
+    player.Load();
 
     // initialize 
-    mainMenu.Initialize();
+    mainMenu.Initialize(sf::Vector2f(window.getSize().x, window.getSize().y));
+    player.Initialize(sf::Vector2f(window.getSize().x, window.getSize().y));
 
     sf::Clock clock; // main clock
     sf::Vector2f mousePosition;

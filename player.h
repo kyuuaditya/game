@@ -15,8 +15,8 @@ public:
     int yIndex = 0; // sprite sheet y index
 
 public:
-    void Load(sf::Vector2f windowSize);
-    void Initialize();
+    void Load();
+    void Initialize(sf::Vector2f windowSize);
     void Update(sf::RenderWindow& window, sf::Vector2f mousePosition, float deltaTime);
     void Render(sf::RenderWindow& window, bool isInGame);
 };
