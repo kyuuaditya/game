@@ -34,18 +34,16 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Escape) { // close window on pressing escape
-                    window.close();
-                }
-                if (event.key.code == sf::Keyboard::Space) {
-                    player.xIndex = (player.xIndex + 1) % 7;
-                    player.playerSprite.setTextureRect(sf::IntRect(player.xIndex * player.width, player.yIndex * player.height, (player.xIndex + 1) * player.width, (player.yIndex + 1) * player.height));
-                    // std::cout << player.xIndex * player.width << " " << player.yIndex * player.height << " " << (player.xIndex + 1) * player.width << " " << (player.yIndex + 1) * player.height << std::endl;
-                }
-                if (event.key.code == sf::Keyboard::G) {
+                    if (mainMenu.isOnMenu) {
+                        window.close();
+                    }
                     if (mainMenu.isInGame) {
                         mainMenu.isInGame = false;
                         mainMenu.isOnMenu = true;
                     }
+                }
+                if (event.key.code == sf::Keyboard::D) {
+                    player.xIndex = (player.xIndex + 1) % 7;
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -73,7 +71,7 @@ int main() {
         // TODO ------------------------------------------- update -------------------------------------------
         float deltaTime = clock.restart().asMilliseconds(); // restart the clock and get the time since last frame
         mainMenu.Update(window, mousePosition, deltaTime);
-        player.Update(window, mousePosition, deltaTime);
+        player.Update(window, mousePosition, deltaTime, mainMenu.isInGame);
         // TODO ------------------------------------------- update -------------------------------------------
 
         // ------------------------------------------- display -------------------------------------------
