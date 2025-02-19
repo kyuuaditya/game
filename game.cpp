@@ -72,6 +72,7 @@ int main() {
         // TODO ------------------------------------------- update -------------------------------------------
         float deltaTime = clock.restart().asMilliseconds(); // restart the clock and get the time since last frame
         mainMenu.Update(window, mousePosition, deltaTime);
+        player.Update(window, mousePosition, deltaTime);
         // TODO ------------------------------------------- update -------------------------------------------
 
         // ------------------------------------------- display -------------------------------------------
