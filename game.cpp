@@ -44,6 +44,14 @@ int main() {
                 }
                 if (event.key.code == sf::Keyboard::D) {
                     player.xIndex = (player.xIndex + 1) % 7;
+                    player.playerCoordX += player.playerMoveSpeed;
+                }
+                if (event.key.code == sf::Keyboard::A) {
+                    player.xIndex = (player.xIndex - 1);
+                    if (player.xIndex < 0) {
+                        player.xIndex = 6;
+                    }
+                    player.playerCoordX -= player.playerMoveSpeed;
                 }
             }
             if (event.type == sf::Event::MouseButtonPressed) {

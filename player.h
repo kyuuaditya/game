@@ -10,12 +10,13 @@ public:
     int height = 128;
     int width = 128;
 
-    int playerCordX = 200;
-    int playerCordY = 0;
+    int playerCoordX = 200;
+    int playerCoordY = 0;
 
-    int playerMoveSpeed = 5;
+    int playerMoveSpeed = 15;
 
     sf::Sprite playerSprite; // sprite for the player
+    int xSize = 7; // this has 7 images in the sprite sheet
     int xIndex = 0; // sprite sheet x index
     int yIndex = 0; // sprite sheet y index
 
